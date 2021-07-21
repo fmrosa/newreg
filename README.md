@@ -11,14 +11,15 @@ After that, it creates a CSV file adding to each entry the information below:
 
 only non-std library used was wget so
 
-pip3 install wget 
+# pip3 install wget 
 
 and then to use it: 
 
-python3 download_domains.py
+# python3 download_domains.py
 
 then
 
-python3 add_domains_db.py
+# python3 add_domains_db.py
 
-this will create a file on a /data folder that contains the processed file and all others will be removed. 
+this will create a file on a /data folder that is named like %YYYY%mm%dd.csv. 
+All other files that were used to create the csv are deleted after processing
