@@ -11,7 +11,7 @@ After that, it creates a CSV file adding to each entry the information below:
 
 Only non-std library used was wget so before using:
 
-> pip3 install wget 
+> pip3 install -r requirments.txt
 
 and then to use it: 
 
