@@ -5,6 +5,7 @@ from datetime import date, timedelta
 import os
 import re
 import csv
+import requests
 
 # determine yesterday's date
 yesterday = date.today()-timedelta(days=1)
@@ -35,6 +36,14 @@ def hasdash(domain):
     else: 
         return 0
 
+def dnsresolves(domain):
+    params = {"name": domain, "type": "A"}
+    resolution = requests.get("https://dns.google.com/resolve", params=params)
+    status = resolution.json()['Status']
+    print(status)
+
+
+
 # opening file1 in reading mode and file2 in writing mode
 date = date.today()-timedelta(days=1) 
 file = f'./data/{date}.'
@@ -49,6 +58,7 @@ with open(file+'txt', 'r') as f1, open(file+'csv', 'w') as f2:
     # loop through the lines in file1 and write functions in file2 
     for line in reader: 
         writer.writerow([line, date, length(line), tld(line), hasnum(line), hasdash(line)])
+        dnsresolves(line)
 
     # no need to close the file - already closed. 
 
