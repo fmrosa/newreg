@@ -39,11 +39,11 @@ async def main():
                         headtasks.append(head)
 
                     #Run Tasks
-                    #starttime = datetime.utcnow()
-                    #print("**Starting Batch: " + str(starttime))
+                    starttime = datetime.utcnow()
+                    print("**Starting Batch: " + str(starttime))
                     headresults = await asyncio.gather(*headtasks)
-                    #endtime = datetime.utcnow() - starttime
-                    #print("Ending Batch:" + str(endtime))
+                    endtime = datetime.utcnow() - starttime
+                    print("Ending Batch:" + str(endtime))
 
 starttime = datetime.utcnow()      
 asyncio.run(main())
