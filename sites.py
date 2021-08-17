@@ -5,7 +5,7 @@ from itertools import islice
 from datetime import date, datetime, timedelta
 
 #Define Number of records to proccess at once
-BATCH_SIZE = 5000
+BATCH_SIZE = 15000
 
 async def sitehead(index, session, url):
     try:
