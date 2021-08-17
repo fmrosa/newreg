@@ -19,7 +19,7 @@ async def main():
     headtasks = []
     #Setup async call
     connector = aiohttp.TCPConnector(ssl=False, limit=1000)
-    timeout = aiohttp.ClientTimeout(total=60000, sock_read=None, connect=5, sock_connect=.15)
+    timeout = aiohttp.ClientTimeout(total=60000, sock_read=None, connect=5, sock_connect=1)
     async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
         #Define File to Open
         filedate = date.today()-timedelta(days=1) 
