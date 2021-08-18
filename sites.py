@@ -6,25 +6,25 @@ from itertools import islice
 from datetime import date, datetime, timedelta
 
 #Define Number of records to proccess at once
-BATCH_SIZE = 15000
+BATCH_SIZE = 500
 
 async def sitehead(index, session, url, outfile):
     try:
         async with session.head(("https://" + url)) as resp:
             print(index, url, str(resp.status))
             if resp.status == 200:
-                print(url)
+                #print(url)
                 with open(outfile, 'a') as f:
                     f.write(url + '\n')
     except:
-        print(str(index), url)
+        print(str(index), url, "Fail")
         return
 
 async def main():
     headtasks = []
     #Setup async call
-    connector = aiohttp.TCPConnector(ssl=False, limit=1000)
-    timeout = aiohttp.ClientTimeout(total=60000, sock_read=None, connect=5, sock_connect=1)
+    connector = aiohttp.TCPConnector(ssl=False, limit=None)
+    timeout = aiohttp.ClientTimeout(total=None, sock_read=None, connect=None, sock_connect=1)
     async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
         #Define File to Open
         today = date.today()
