@@ -22,6 +22,11 @@ DS_URL_TODAY = DS_URL.replace("$date", yesterday)
 
 date = date.today()-timedelta(days=1) 
 
+
+#Create Data Dir if it doesn't exist
+if not os.path.exists('my_folder'):
+    os.makedirs('my_folder')
+    
 # download the file to /data folder
 print("# downloading file")
 wget.download(DS_URL_TODAY, f"./data/{date}.zip")
