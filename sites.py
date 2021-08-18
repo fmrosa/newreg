@@ -6,7 +6,7 @@ from itertools import islice
 from datetime import date, datetime, timedelta
 
 #Define Number of records to proccess at once
-BATCH_SIZE = 500
+BATCH_SIZE = 5000
 
 async def sitehead(index, session, url, outfile):
     try:
@@ -24,7 +24,7 @@ async def main():
     headtasks = []
     #Setup async call
     connector = aiohttp.TCPConnector(ssl=False, limit=None)
-    timeout = aiohttp.ClientTimeout(total=None, sock_read=None, connect=None, sock_connect=1)
+    timeout = aiohttp.ClientTimeout(total=None, sock_read=None, connect=None, sock_connect=.5)
     async with aiohttp.ClientSession(connector=connector, timeout=timeout) as session:
         #Define File to Open
         today = date.today()
@@ -48,10 +48,10 @@ async def main():
 
                     #Run Tasks
                     starttime = datetime.utcnow()
-                    print("**Starting Batch: " + str(starttime))
+                    #print("**Starting Batch: " + str(starttime))
                     headresults = await asyncio.gather(*headtasks)
                     endtime = datetime.utcnow() - starttime
-                    print("Ending Batch:" + str(endtime))
+                    print("*******************************************Ending Batch:" + str(endtime) + "*******************************************************")
 
 starttime = datetime.utcnow()      
 asyncio.run(main())
