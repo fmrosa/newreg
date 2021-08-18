@@ -11,13 +11,13 @@ BATCH_SIZE = 15000
 async def sitehead(index, session, url, outfile):
     try:
         async with session.head(("https://" + url)) as resp:
-            #print(url, str(resp.status))
+            print(index, url, str(resp.status))
             if resp.status == 200:
                 print(url)
                 with open(outfile, 'a') as f:
                     f.write(url + '\n')
     except:
-        #print(str(index))
+        print(str(index), url)
         return
 
 async def main():
