@@ -30,7 +30,7 @@ async def setoolspost(index, session, rbiurls):
         params = {'append': 'true'}
     #print(rbiurls)
     setools = "https://setools.netskope.io/api/v1/file/rbiurls/"
-    headers = {'Authorization': 'Token ydwXBxilYFD1yap97XxAUuggt8GGR3g3uq8WBqxHsnmV1Ad4uG'}
+    headers = {'Authorization': ''}
     resp = await session.post(setools, data=rbiurls, headers=headers, params=params)
     print(await resp.json())
 
